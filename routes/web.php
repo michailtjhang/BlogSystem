@@ -22,4 +22,9 @@ Route::prefix('admin')->group(function () {
     Route::resource('category', CategoryController::class)
         ->only(['index', 'store', 'update', 'destroy']);
     Route::resource('article', ArticleController::class);
+
+});
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['guest']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });

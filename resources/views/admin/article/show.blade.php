@@ -16,39 +16,40 @@
                 <table class="table table-bordered table-hover table-stripped">
                     <tr>
                         <th>Title</th>
-                        <th>: {{ $article->title }}</th>
+                        <td>: {{ $article->title }}</td>
                     </tr>
                     <tr></tr>
                     <th>Category</th>
-                    <th>: {{ $article->category->name }}</th>
+                    <td>: {{ $article->category->name }}</td>
                     </tr>
                     <tr>
                         <th>Description</th>
-                        <th>: {!! $article->desc !!}</th>
+                        <td>: {!! $article->desc !!}</td>
                     </tr>
                     <tr>
                         <th>Image</th>
-                        <th>
-                            <a href="{{ asset('storage/article/' . $article->img) }}" target="_blank" rel="noopener noreferrer">
+                        <td>
+                            <a href="{{ asset('storage/article/' . $article->img) }}" target="_blank"
+                                rel="noopener noreferrer">
                                 <img src="{{ asset('storage/article/' . $article->img) }}" alt="" width="500">
                             </a>
-                        </th>
+                        </td>
                     </tr>
                     <tr>
                         <th>Views</th>
-                        <th>: {{ $article->views }}</th>
+                        <td>: {{ $article->views }}</td>
                     </tr>
                     <tr>
                         <th>Status</th>
                         @if ($article->status == 1)
-                            <th>: <span class="badge badge-success">Published</span></th>
+                            <td>: <span class="badge badge-success">Published</span></td>
                         @else
-                            <th>: <span class="badge badge-danger">Draft</span></th>
+                            <td>: <span class="badge badge-danger">Draft</span></td>
                         @endif
                     </tr>
                     <tr>
                         <th>Published Date</th>
-                        <th>: {{ $article->published_date }}</th>
+                        <td>: {{ $article->published_date }}</td>
                     </tr>
                 </table>
             </div>

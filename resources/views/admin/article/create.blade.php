@@ -22,7 +22,8 @@
                     <div class="col-6 form-group">
                         <label for="title">Title</label>
                         <input type="text" name="title" id="title"
-                            class="form-control @error('title') is-invalid @enderror" placeholder="Please Enter Title" value="{{ old('title') }}">
+                            class="form-control @error('title') is-invalid @enderror" placeholder="Please Enter Title"
+                            value="{{ old('title') }}">
 
                         @error('title')
                             <div class="invalid-feedback">
@@ -53,7 +54,7 @@
 
                 <div class="form-group">
                     <label for="desc">Description</label>
-                    <textarea name="desc" id="desc" cols="30" rows="10" 
+                    <textarea name="desc" id="myeditor" cols="30" rows="10"
                         class="form-control @error('description') is-invalid @enderror">{{ old('desc') }}</textarea>
 
                     @error('desc')
@@ -74,6 +75,10 @@
                         <div class="input-group-append">
                             <span class="input-group-text">Upload</span>
                         </div>
+                    </div>
+
+                    <div class="mt-2">
+                        <img src="" id="img_preview" class="img-thumbnail img_preview" alt="" width="60px">
                     </div>
 
                     @error('img')
@@ -104,7 +109,8 @@
                     <div class="col-6 form-group">
                         <label for="publish_date">Publish Date</label>
                         <input type="date" name="published_date" id="publish_date"
-                            class="form-control @error('publish_date') is-invalid @enderror" value="{{ old('published_date') }}">
+                            class="form-control @error('publish_date') is-invalid @enderror"
+                            value="{{ old('published_date') }}">
 
                         @error('published_date')
                             <div class="invalid-feedback">
@@ -122,7 +128,39 @@
     </div>
 @endsection
 @section('js')
-<script src="{{ asset('assets/vendor/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+            clipboard_handleImages: false
+        };
+    </script>
+
+    <script>
+        // ckeditor
+        CKEDITOR.replace('myeditor', options);
+
+        // img preview
+        $('#img').on('change', function() {
+            previewImage(this);
+        })
+
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
     <script>
         $(function() {
             bsCustomFileInput.init();

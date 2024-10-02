@@ -60,7 +60,7 @@
 
                 <div class="form-group">
                     <label for="desc">Description</label>
-                    <textarea name="desc" id="desc" cols="30" rows="10"
+                    <textarea name="desc" id="myeditor" cols="30" rows="10"
                         class="form-control @error('description') is-invalid @enderror">{{ old('desc', $article->desc) }}</textarea>
 
                     @error('desc')
@@ -133,6 +133,38 @@
 @endsection
 @section('js')
     <script src="{{ asset('assets/vendor/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+            clipboard_handleImages: false
+        };
+    </script>
+
+    <script>
+        // ckeditor
+        CKEDITOR.replace('myeditor', options);
+
+        // img preview
+        $('#img').on('change', function() {
+            previewImage(this);
+        })
+
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
     <script>
         $(function() {
             bsCustomFileInput.init();

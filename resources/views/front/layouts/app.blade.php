@@ -12,6 +12,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/front/img/favicon.ico') }}" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('assets/front/css/styles.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/front/css/custom.css') }}" rel="stylesheet" />
     @yield('css')
 </head>
 

@@ -10,11 +10,13 @@ use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\TwoFactorSettingsController;
+use App\Http\Controllers\Front\ArticleController as FrontArticleController;
 use App\Http\Controllers\Front\HomeController;
 
 // Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/article/search', [HomeController::class, 'index'])->name('search');
+Route::get('/p/{slug}', [FrontArticleController::class, 'show'])->name('p');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'auth_login'])->name('auth.login');

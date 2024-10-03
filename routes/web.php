@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\TwoFactorSettingsController;
 use App\Http\Controllers\Front\ArticleController as FrontArticleController;
+use App\Http\Controllers\Front\CategoryController as FrontCategoryController;
 use App\Http\Controllers\Front\HomeController;
 
 // Route
@@ -18,6 +19,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/articles', [FrontArticleController::class, 'index'])->name('articles');
 Route::post('/article/search', [FrontArticleController::class, 'index'])->name('search');
 Route::get('/p/{slug}', [FrontArticleController::class, 'show'])->name('p');
+
+Route::get('/category/{slug}', [FrontCategoryController::class, 'index'])->name('category');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'auth_login'])->name('auth.login');

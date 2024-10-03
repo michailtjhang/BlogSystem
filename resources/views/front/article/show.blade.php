@@ -9,9 +9,13 @@
                 <!-- Featured blog post-->
                 <div class="card mb-4">
                     <a href="{{ route('p', $article->slug) }}"><img class="card-img-top single-img" src="{{ asset('storage/article/' . $article->img) }}"
-                            alt="..." /></a>
+                            alt="{{ $article->title }}" /></a>
                     <div class="card-body">
-                        <div class="small text-muted">{{ $article->created_at->format('M d, Y') }}</div>
+                        <div class="small text-muted">
+                            <span class="ml-2">{{ $article->created_at->format('M d, Y') }}</span>
+                            <span class="ml-2"><a href="{{ route('category', $article->category->slug) }}">{{ $article->category->name }}</a></span>
+                            <span class="ml-2">{{ $article->views }}</span>
+                        </div>
                         <h1 class="card-title">{{ $article->title }}</h1>
                         <p class="card-text">{!! $article->desc !!}</p>
                     </div>

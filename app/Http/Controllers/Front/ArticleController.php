@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Article;
-use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
@@ -28,18 +26,17 @@ class ArticleController extends Controller
         return view('front.article.index', [
             'page_title' => 'Articles',
             'articles' => $articles,
-            'categories' => Category::latest()->get(),
             'keywords' => $keywords
         ]);
     }
 
     public function show($slug)    
     {
-        $article = Article::whereSlug($slug)->first();
+        $article = Article::whereSlug($slug)->firstOrFail();
+        $article->increment('views');
         return view('front.article.show', [
-            'page_title' => 'Article ' . $article->title,
+            'page_title' => $article->title,
             'article' => $article,
-            'categories' => Category::latest()->get(),
         ]);
     }
 }

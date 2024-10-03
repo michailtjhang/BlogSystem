@@ -26,7 +26,7 @@
                             <div class="card mb-4 shadow-sm">
                                 <a href="{{ route('p', $item->slug) }}"><img class="card-img-top post-img"
                                         src="{{ asset('storage/article/' . $item->img) }}" alt="..." /></a>
-                                <div class="card-body">
+                                <div class="card-body card-height">
                                     <div class="small text-muted">
                                         {{ $item->created_at->format('M d, Y') }}
                                         {{-- <a href="{{ route('category', $item->category->slug) }}"> --}}

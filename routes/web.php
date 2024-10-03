@@ -15,7 +15,8 @@ use App\Http\Controllers\Front\HomeController;
 
 // Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::post('/article/search', [HomeController::class, 'index'])->name('search');
+Route::get('/articles', [FrontArticleController::class, 'index'])->name('articles');
+Route::post('/article/search', [FrontArticleController::class, 'index'])->name('search');
 Route::get('/p/{slug}', [FrontArticleController::class, 'show'])->name('p');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');

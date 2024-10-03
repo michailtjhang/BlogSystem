@@ -20,7 +20,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'provider_id',
+        'access_token',
+        'refresh_token',
+        'provider_name',
     ];
 
     static public function getSingleRecord($id)

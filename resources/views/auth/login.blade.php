@@ -88,6 +88,13 @@
                     </div>
                 </form>
 
+                <div class="social-auth-links text-center mb-3">
+                    <p>- OR -</p>
+                    <a href="{{ route('auth.socialite.redirect') }}" class="btn btn-block btn-danger">
+                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                    </a>
+                </div>
+
                 <p class="mb-1">
                     <a href="#">I forgot my password</a>
                 </p>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\SocialiteController;
 
 // Route
 Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -29,6 +30,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('article', ArticleController::class);
     });
 });
+
+Route::get('/auth/redirect', [SocialiteController::class, 'redirect'])->name('auth.socialite.redirect');
+
+Route::get('/auth/{provider}/callback', [SocialiteController::class, 'callback'])->name('auth.socialite.callback');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['guest']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

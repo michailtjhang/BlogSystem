@@ -76,6 +76,8 @@ class AuthController extends Controller
         $data['id_user'] = $id_user;
         $user = User::create($data);
 
+        Auth::login($user);
+
         if ($user) {
             return redirect()->intended('/');
         } else {

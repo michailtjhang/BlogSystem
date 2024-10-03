@@ -25,6 +25,7 @@ class User extends Authenticatable
         'access_token',
         'refresh_token',
         'provider_name',
+        'two_factor_code',
     ];
 
     static public function getSingleRecord($id)

@@ -20,7 +20,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
+
+    static public function getSingleRecord($id)
+    {
+        return User::find($id);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

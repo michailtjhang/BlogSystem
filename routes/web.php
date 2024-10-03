@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 
 // Route
 Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -15,14 +16,18 @@ Route::post('register', [AuthController::class, 'auth_register'])->name('auth.re
 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::prefix('admin')->group(function () {
+Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    // Resource Route
-    Route::resource('category', CategoryController::class)
-        ->only(['index', 'store', 'update', 'destroy']);
-    Route::resource('article', ArticleController::class);
+    Route::prefix('admin')->group(function () {
 
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        // Resource Route
+        Route::resource('category', CategoryController::class)
+            ->only(['index', 'store', 'update', 'destroy'])->middleware('useradmin:admin');
+        Route::resource('user', UserController::class)
+            ->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('article', ArticleController::class);
+    });
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['guest']], function () {

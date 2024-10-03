@@ -7,7 +7,7 @@
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                    <img src="{{ asset('img/no_photo.svg') }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ asset('img/no_photo.svg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">Nama</a>
@@ -27,16 +27,17 @@
                     </a>
                 </li>
 
-                    <li class="nav-header">Management</li>
-                
-                    <li class="nav-item">
-                        <a href="{{ route('article.index') }}"
-                            class="nav-link @if (Request::segment(2) == 'article') active @endif">
-                            <i class="fas fa-newspaper nav-icon"></i>
-                            <p>Article</p>
-                        </a>
-                    </li>
+                <li class="nav-header">Management</li>
 
+                <li class="nav-item">
+                    <a href="{{ route('article.index') }}"
+                        class="nav-link @if (Request::segment(2) == 'article') active @endif">
+                        <i class="fas fa-newspaper nav-icon"></i>
+                        <p>Article</p>
+                    </a>
+                </li>
+
+                @if (Auth::user()->role == 'admin')
                     <li class="nav-item">
                         <a href="{{ route('category.index') }}"
                             class="nav-link @if (Request::segment(2) == 'category') active @endif">
@@ -44,14 +45,15 @@
                             <p>Category</p>
                         </a>
                     </li>
+                @endif
 
-                    <li class="nav-item">
-                        <a href="#"
-                            class="nav-link @if (Request::segment(2) == 'user') active @endif">
-                            <i class="fas fa-users nav-icon"></i>
-                            <p>User</p>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ route('user.index') }}"
+                        class="nav-link @if (Request::segment(2) == 'user') active @endif">
+                        <i class="fas fa-users nav-icon"></i>
+                        <p>User</p>
+                    </a>
+                </li>
 
                 <li class="nav-item mt-4">
                     <a href="{{ route('logout') }}" class="nav-link bg-danger">

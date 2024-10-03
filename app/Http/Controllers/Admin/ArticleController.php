@@ -118,7 +118,6 @@ class ArticleController extends Controller
         }
 
         $data['slug'] = Str::slug($data['title']);
-        $data['views'] = 0;
 
         Article::find($id)->update($data);
 

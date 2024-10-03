@@ -10,10 +10,14 @@ use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\TwoFactorSettingsController;
+use App\Http\Controllers\Front\HomeController;
 
 // Route
-Route::get('/', [AuthController::class, 'login'])->name('login');
-Route::post('/', [AuthController::class, 'auth_login'])->name('auth.login');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/article/search', [HomeController::class, 'index'])->name('search');
+
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'auth_login'])->name('auth.login');
 
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('register', [AuthController::class, 'auth_register'])->name('auth.register');

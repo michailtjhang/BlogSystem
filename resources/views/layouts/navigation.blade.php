@@ -41,11 +41,19 @@
                     <li class="nav-item">
                         <a href="{{ route('category.index') }}"
                             class="nav-link @if (Request::segment(2) == 'category') active @endif">
-                            <i class="fas fa-list nav-icon"></i>
+                            <i class="fas fa-folder nav-icon"></i>
                             <p>Category</p>
                         </a>
                     </li>
                 @endif
+                
+                <li class="nav-item">
+                    <a href="{{ route('config.index') }}"
+                        class="nav-link @if (Request::segment(2) == 'config') active @endif">
+                        <i class="fas fa-list nav-icon"></i>
+                        <p>Config</p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a href="{{ route('user.index') }}"

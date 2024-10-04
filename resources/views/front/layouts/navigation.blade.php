@@ -21,7 +21,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="">All Categories</a></li>
+                        <li><a class="dropdown-item" href="{{ route('all-category') }}">All Categories</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About</a></li>

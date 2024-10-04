@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -20,6 +21,7 @@ Route::get('/articles', [FrontArticleController::class, 'index'])->name('article
 Route::post('/article/search', [FrontArticleController::class, 'index'])->name('search');
 Route::get('/p/{slug}', [FrontArticleController::class, 'show'])->name('p');
 
+Route::get('/all-category', [FrontCategoryController::class, 'allCategory'])->name('all-category');
 Route::get('/category/{slug}', [FrontCategoryController::class, 'index'])->name('category');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
@@ -43,6 +45,8 @@ Route::group(['middleware' => ['auth', 'verify2fa']], function () {
         Route::resource('user', UserController::class)
             ->only(['index', 'store', 'update', 'destroy']);
         Route::resource('article', ArticleController::class);
+        Route::resource('config', ConfigController::class)
+            ->only(['index', 'update']);
 
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
     });

@@ -13,7 +13,7 @@
             </form>
         </div>
 
-            <p>Showing results for Category "<b>{{ $categories }}</b>"</p>
+        <p>Showing results for Category "<b>{{ $categories }}</b>"</p>
 
         <div class="row">
             @forelse ($articles as $item)
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             @empty
-            <p>Not found</p>
+                <p>Not found</p>
             @endforelse
 
         </div>

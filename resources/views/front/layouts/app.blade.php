@@ -10,6 +10,8 @@
     <title>{{ $page_title ?? 'Blog' }} - {{ config('app.name', 'Michails Blog') }}</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/front/img/favicon.ico') }}" />
+    <!-- Font Awesome icons (free version)-->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/adminlte') }}/plugins/fontawesome-free/css/all.min.css">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('assets/front/css/styles.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/front/css/custom.css') }}" rel="stylesheet" />
@@ -36,7 +38,7 @@
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website {{ date('Y') }}</p>
         </div>
     </footer>
     <!-- Bootstrap core JS-->

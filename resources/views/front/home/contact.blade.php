@@ -20,10 +20,11 @@
                             </p>
 
                             <ul>
-                                <li>Phone: (123) 456-7890</li>
-                                <li>Email: 6vqIu@example.com</li>
-                                <li><a href="https://www.youtube.com">Youtube</a></li>
-                                <li><a href="https://www.instagram.com">Instagram</a></li>
+                                <li>Phone:{{ $config['phone'] }}</li>
+                                <li>Email: {{ $config['email'] }}</li>
+                                <li><a href="{{ $config['facebook'] }}">Facebook</a></li>
+                                <li><a href="{{ $config['instagram'] }}">Instagram</a></li>
+                                <li><a href="{{ $config['youtube'] }}">Youtube</a></li>
                             </ul>
                         </p>
                     </div>

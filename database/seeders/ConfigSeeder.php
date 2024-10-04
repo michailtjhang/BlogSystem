@@ -32,15 +32,7 @@ class ConfigSeeder extends Seeder
             ],
             [
                 'name' => 'ads_wight',
-                'value' => 'adsense 1'
-            ],
-            [
-                'name' => 'ads_header',
-                'value' => 'adsense 2'
-            ],
-            [
-                'name' => 'ads_footer',
-                'value' => 'adsense 3'
+                'value' => 'https://images.unsplash.com/photo-1704299059700-268345bcb6bd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
             ],
             [
                 'name' => 'phone',

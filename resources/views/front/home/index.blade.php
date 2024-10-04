@@ -7,7 +7,7 @@
             <!-- Blog entries-->
             <div class="col-lg-8">
                 <!-- Featured blog post-->
-                <div class="card mb-4 shadow-sm">
+                <div class="card mb-4 shadow-sm" data-aos="fade-in">
                     <a href="{{ route('p', $last_articles->slug) }}"><img class="card-img-top feature-img" src="{{ asset('storage/article/' . $last_articles->img) }}"
                             alt="..." /></a>
                     <div class="card-body">
@@ -20,7 +20,7 @@
                 <!-- Nested row for non-featured blog posts-->
                 <div class="row">
                     @foreach ($articles as $item)
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" data-aos="fade-up">
                             <!-- Blog post-->
 
                             <div class="card mb-4 shadow-sm">

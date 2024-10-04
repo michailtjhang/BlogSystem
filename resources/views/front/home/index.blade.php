@@ -8,10 +8,19 @@
             <div class="col-lg-8">
                 <!-- Featured blog post-->
                 <div class="card mb-4 shadow-sm" data-aos="fade-in">
-                    <a href="{{ route('p', $last_articles->slug) }}"><img class="card-img-top feature-img" src="{{ asset('storage/article/' . $last_articles->img) }}"
-                            alt="..." /></a>
+                    <a href="{{ route('p', $last_articles->slug) }}"><img class="card-img-top feature-img"
+                            src="{{ asset('storage/article/' . $last_articles->img) }}"
+                            alt="{{ $last_articles->title }}" /></a>
                     <div class="card-body">
-                        <div class="small text-muted">{{ $last_articles->created_at->format('M d, Y') }}</div>
+                        <div class="small text-muted">
+                            {{ $last_articles->created_at->format('M d, Y') }}
+                            |
+                            <a href="{{ route('category', $last_articles->category->slug) }}">
+                                {{ $last_articles->category->name }}
+                            </a>
+                            |
+                            {{ $last_articles->user->name ?? '' }}
+                        </div>
                         <h2 class="card-title">{{ $last_articles->title }}</h2>
                         <p class="card-text">{{ Str::limit(strip_tags($last_articles->desc), 200, '...') }}</p>
                         <a class="btn btn-primary" href="{{ route('p', $last_articles->slug) }}">Read more →</a>
@@ -29,9 +38,12 @@
                                 <div class="card-body card-height">
                                     <div class="small text-muted">
                                         {{ $item->created_at->format('M d, Y') }}
-                                        {{-- <a href="{{ route('category', $item->category->slug) }}"> --}}
+                                        |
+                                        <a href="{{ route('category', $item->category->slug) }}">
                                             {{ $item->category->name }}
-                                        {{-- </a> --}}
+                                        </a>
+                                        |
+                                        {{ $item->user->name ?? '' }}
                                     </div>
                                     <h2 class="card-title h4">{{ $item->title }}</h2>
                                     <p class="card-text">{{ Str::limit(strip_tags($item->desc), 100, '...') }}</p>

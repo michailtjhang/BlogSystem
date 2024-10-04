@@ -27,9 +27,12 @@
                         <div class="card-body card-height">
                             <div class="small text-muted">
                                 {{ $item->created_at->format('M d, Y') }}
-                                {{-- <a href="{{ route('category', $item->category->slug) }}"> --}}
-                                {{ $item->category->name }}
-                                {{-- </a> --}}
+                                |
+                                <a href="{{ route('category', $item->category->slug) }}">
+                                    {{ $item->category->name }}
+                                </a>
+                                |
+                                {{ $item->user->name ?? '' }}
                             </div>
                             <h2 class="card-title h4">{{ $item->title }}</h2>
                             <p class="card-text">{{ Str::limit(strip_tags($item->desc), 100, '...') }}</p>
@@ -38,7 +41,7 @@
                     </div>
                 </div>
             @empty
-            <p>Not found</p>
+                <p>Not found</p>
             @endforelse
 
         </div>

@@ -51,6 +51,10 @@
                         <th>Published Date</th>
                         <td>: {{ $article->published_date }}</td>
                     </tr>
+                    <tr>
+                        <th>Writer</th>
+                        <td>: {{ $article->user->name ?? '' }}</td>
+                    </tr>
                 </table>
             </div>
         </div>

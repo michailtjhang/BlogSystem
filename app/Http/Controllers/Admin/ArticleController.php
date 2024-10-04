@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticteRequest;
 use App\Http\Requests\UpdateArticteRequest;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -66,6 +67,7 @@ class ArticleController extends Controller
         $file->move(storage_path('app/public/article'), $filename); // path file
 
         $data['img'] = $filename;
+        $data['user_id'] = auth()->user()->id;
         $data['slug'] = Str::slug($data['title']);
         $data['views'] = 0;
 
@@ -81,7 +83,7 @@ class ArticleController extends Controller
     {
         return view('admin.article.show', [
             'page_title' => 'Show Article',
-            'article' => Article::find($id),
+            'article' => Article::with('user', 'category')->find($id),
         ]);
     }
 

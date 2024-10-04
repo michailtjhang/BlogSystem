@@ -11,8 +11,8 @@ class HomeController extends Controller
     {
         return view('front.home.index',[
             'page_title' => 'Home Blog',
-            'last_articles' => Article::whereStatus(1)->latest()->first(),
-            'articles' => Article::whereStatus(1)->latest()->paginate(6),
+            'last_articles' => Article::with('category', 'user')->whereStatus(1)->latest()->first(),
+            'articles' => Article::with('category', 'user')->whereStatus(1)->latest()->paginate(6),
         ]);
     }
 

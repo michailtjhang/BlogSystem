@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Article;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,7 +24,10 @@ class SideWidgetProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('front.layouts.side-widget', function ($view) {
-            $categories = Category::latest()->get();
+            $categories = Category::withCount(['articles' => function (Builder $query) {
+                $query->whereStatus(1);
+            }])->latest()->get();
+            
             $view->with('categories', $categories);
         });
 

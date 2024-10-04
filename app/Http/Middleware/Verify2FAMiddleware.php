@@ -16,7 +16,7 @@ class Verify2FAMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && !session('two_factor_authenticated')) {
+        if (Auth::check() && Auth::user()->two_factor_enabled && !session('two_factor_authenticated')) {
             return redirect()->route('two-factor.index');
         }
         return $next($request);

@@ -14,8 +14,8 @@ class DashboardController extends Controller
             'page_title' => 'Dashboard',
             'total_article' => Article::count(),
             'total_category' => Category::count(),
-            'last_article' => Article::with('category')->whereStatus(1)->latest()->limit(5)->get(),
-            'popular_article' => Article::with('category')->whereStatus(1)->orderBy('views', 'DESC')->limit(5)->get()
+            'last_article' => Article::latest()->with('category')->whereStatus(1)->limit(5)->get(),
+            'popular_article' => Article::orderBy('views', 'DESC')->with('category')->whereStatus(1)->limit(5)->get()
         ]);
     }
 }

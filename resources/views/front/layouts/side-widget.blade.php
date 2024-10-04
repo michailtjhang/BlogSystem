@@ -19,7 +19,7 @@
             <div>
                 @foreach ($categories as $item)
                     <span><a href="{{ route('category', $item->slug) }}"
-                            class="badge bg-primary text-white unstyled-link">{{ $item->name }}</a></span>
+                            class="badge bg-primary text-white unstyled-link">{{ $item->name }} ({{ $item->articles_count }})</a></span>
                 @endforeach
             </div>
         </div>

@@ -1,5 +1,16 @@
 @extends('front.layouts.app')
 
+@push('metaSeO')
+    <meta name="author" content="BlogSystem" />
+    <meta name="description" content="Article Blog System, Seputar Informasi Teknologi, Artis, Model, Idol dan sejenisnya Terbaru" />
+    <meta name="keywords" content="list article BlogSystem, Article BlogSystem, daftar artikel blogsystem">
+    <meta name="og:title" content="{{ $page_title ?? 'Blog' }} - {{ config('app.name', 'BlogSystem') }}">
+    <meta name="og:description" content="Article Blog System, Seputar Informasi Teknologi, Artis, Model, Idol dan sejenisnya Terbaru">
+    <meta name="og:url" content="{{ url()->current() }}">
+    <meta name="og:site_name" content="Blog System">
+    <meta name="og:type" content="website">
+@endpush
+
 @section('content')
     <!-- Page content-->
     <div class="container">

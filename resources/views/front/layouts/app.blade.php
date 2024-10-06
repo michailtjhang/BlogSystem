@@ -2,12 +2,12 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    @stack('meta')
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>{{ $page_title ?? 'Blog' }} - {{ config('app.name', 'Michails Blog') }}</title>
+    @stack('metaSeO')
+    <meta name="robots" content="index, follow">
+    <title>{{ $page_title ?? 'Blog' }} - {{ config('app.name', 'BlogSystem') }}</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/front/img/favicon.ico') }}" />
     <!-- Font Awesome icons (free version)-->

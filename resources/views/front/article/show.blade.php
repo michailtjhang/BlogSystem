@@ -53,6 +53,33 @@
 @endsection
 
 @section('js')
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{ $article->title }}",
+      "datePublished": "{{ $article->created_at->toIso8601String() }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ $article->user->name }}" // Menyesuaikan dengan user yang ada di view
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ config('app.name', 'BlogSystem') }}", // Nama website dari config
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ asset('images/logo.png') }}" // Logo organisasi, sesuaikan dengan path yang sesuai
+        }
+      },
+      "description": "{{ Str::limit(strip_tags($article->desc), 150, '...') }}", // Deskripsi yang sudah ada
+      "image": "{{ asset('storage/article/' . $article->img) }}", // Gambar artikel
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ url()->current() }}" // URL halaman saat ini
+      }
+    }
+    </script>
+
     <script>
         /**
          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.

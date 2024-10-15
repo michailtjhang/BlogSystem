@@ -2,18 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\TwoFactorSettingsController;
 use App\Http\Controllers\Front\ArticleController as FrontArticleController;
 use App\Http\Controllers\Front\CategoryController as FrontCategoryController;
-use App\Http\Controllers\Front\HomeController;
 
 // Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -25,6 +27,13 @@ Route::get('/all-category', [FrontCategoryController::class, 'allCategory'])->na
 Route::get('/category/{slug}', [FrontCategoryController::class, 'index'])->name('category');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+Route::get('/generate-sitemap', [SitemapController::class, 'generate'])->name('generate.sitemap');
+
+Route::get('/surveys', [SurveyController::class, 'index'])->name('surveys.index');
+Route::get('/surveys/create', [SurveyController::class, 'create'])->name('surveys.create');
+Route::post('/surveys', [SurveyController::class, 'store'])->name('surveys.store');
+Route::get('/surveys/{survey}', [SurveyController::class, 'show'])->name('surveys.show');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'auth_login'])->name('auth.login');

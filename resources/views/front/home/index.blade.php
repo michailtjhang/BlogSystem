@@ -19,23 +19,41 @@
             <div class="col-lg-8">
                 <!-- Featured blog post-->
                 <div class="card mb-4 shadow-sm" data-aos="fade-in">
-                    <a href="{{ route('p', $last_articles->slug) }}"><img class="card-img-top feature-img"
-                            src="{{ asset('storage/article/' . $last_articles->img) }}"
-                            alt="{{ $last_articles->title }}" /></a>
-                    <div class="card-body">
-                        <div class="small text-muted">
-                            {{ $last_articles->created_at->format('M d, Y') }}
-                            |
-                            <a href="{{ route('category', $last_articles->category->slug) }}">
-                                {{ $last_articles->category->name }}
-                            </a>
-                            |
-                            {{ $last_articles->user->name ?? '' }}
+                    @if ($last_articles)
+                        <a href="{{ route('p', $last_articles->slug) }}">
+                            <img class="card-img-top feature-img"
+                                src="{{ asset('storage/article/' . $last_articles->img) }}"
+                                alt="{{ $last_articles->title }}" />
+                        </a>
+                    @else
+                        <!-- Tampilkan placeholder atau biarkan kosong jika data tidak ada -->
+                        <img class="card-img-top feature-img" src="{{ asset('images/no-image.jpg') }}" alt="No Data" />
+                    @endif
+                    @if ($last_articles)
+                        <div class="card-body">
+                            <div class="small text-muted">
+                                {{-- Menggunakan optional chaining (?->) agar lebih aman --}}
+                                {{ $last_articles->created_at?->format('M d, Y') }}
+                                |
+                                @if ($last_articles->category)
+                                    <a href="{{ route('category', $last_articles->category->slug) }}">
+                                        {{ $last_articles->category->name }}
+                                    </a>
+                                @else
+                                    Uncategorized
+                                @endif
+                                |
+                                {{ $last_articles->user->name ?? 'Admin' }}
+                            </div>
+                            <h2 class="card-title">{{ $last_articles->title }}</h2>
+                            <p class="card-text">{{ Str::limit(strip_tags($last_articles->desc), 200, '...') }}</p>
+                            <a class="btn btn-primary" href="{{ route('p', $last_articles->slug) }}">Read more →</a>
                         </div>
-                        <h2 class="card-title">{{ $last_articles->title }}</h2>
-                        <p class="card-text">{{ Str::limit(strip_tags($last_articles->desc), 200, '...') }}</p>
-                        <a class="btn btn-primary" href="{{ route('p', $last_articles->slug) }}">Read more →</a>
-                    </div>
+                    @else
+                        <div class="card-body">
+                            <p class="text-muted text-center">Belum ada artikel terbaru.</p>
+                        </div>
+                    @endif
                 </div>
                 <!-- Nested row for non-featured blog posts-->
                 <div class="row">
